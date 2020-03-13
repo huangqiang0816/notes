@@ -1,0 +1,21 @@
+{
+  "name": "yd-note",
+  "version": "0.0.1",
+  "description": "study notes for yideng",
+  "main": "index.js",
+  "authors": {
+    "name": "Hqiang",
+    "email": "nonamehq@sina.com"
+  },
+  "repository": "/yd-note",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.0.0",
+    "@vuepress/plugin-back-to-top": "^1.0.0",
+    "@vuepress/plugin-medium-zoom": "^1.0.0"
+  }
+}
