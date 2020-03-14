@@ -45,7 +45,7 @@ module.exports = {
         collapsable: false,
         children: [
           'css/',
-          'css/day1'
+          'css/bfc'
         ]
       }]
     }
