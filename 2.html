@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+    }
+    .outter {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      cursor: move;
+    }
+    .child {
+      position: absolute;
+      height: 12px;
+      width: 12px;
+      border: 1px solid #000;
+      background: #fff;
+      cursor: nwse-resize;
+      opacity: 0;
+    }
+    .left-top {
+      top: -6px;
+      left: -6px;
+    }
+    .right-top {
+      top: -6px;
+      right: -6px;
+      cursor: nesw-resize;
+    }
+    .left-bottom {
+      bottom: -6px;
+      left: -6px;
+      cursor: nesw-resize;
+    }
+    .right-bottom {
+      bottom: -6px;
+      right: -6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="outter" class="outter">
+    <div id="box" class="box">
+      <div id="leftTop" class="left-top child"></div>
+      <div id="rightTop" class="right-top child"></div>
+      <div id="leftBottom" class="left-bottom child"></div>
+      <div id="rightBottom" class="right-bottom child"></div>
+    </div>
+  </div>
+  <script>
+    // 公共方法
+    function getEle(id) {
+      return document.getElementById(id);
+    }
+  </script>
+  <script>
+    var outter = getEle('outter');
+    var box = getEle('box');
+    var rightTop = getEle('rightTop');
+    var leftTop = getEle('leftTop');
+    var leftBottom = getEle('leftBottom');
+    var rightBottom = getEle('rightBottom');
+    
+    var diffX = 0, diffY = 0;
+    box.addEventListener('mousedown', function(e) {
+      diffX = e.clientX - box.offsetLeft;
+      diffY = e.clientY - box.offsetTop;
+      document.onmousemove = function(e) {
+        box.style.left = (e.clientX - diffX) + 'px';
+        box.style.top = (e.clientY - diffY) + 'px';
+      }
+    }, false);
+    box.addEventListener('mouseup', handleMouseUp, false);
+
+    var resizeStartX = 0, resizeStartY = 0;
+    function handleResizeBoxMousedown(e) {
+      e.stopPropagation();
+      var classList = e.target.classList,
+        isLeftTop = classList.contains('left-top'),
+        isLeftBottom = classList.contains('left-bottom'),
+        isRightBottom = classList.contains('right-bottom'),
+        isRightTop = classList.contains('right-top')
+        w = box.offsetWidth
+        h = box.offsetHeight;
+      resizeStartX = e.clientX;
+      resizeStartY = e.clientY;
+      diffX = e.clientX - box.offsetLeft;
+      diffY = e.clientY - box.offsetTop;
+      document.onmousemove = function(e) {
+        var x = (isRightBottom || isRightTop) ? e.clientX - resizeStartX : resizeStartX - e.clientX;
+        var y = (isRightBottom || isLeftBottom) ? e.clientY - resizeStartY : resizeStartY - e.clientY;
+        box.style.width = (w + x) + 'px';
+        box.style.height = (h + y) + 'px';
+        if (isRightTop || isLeftTop) {
+          box.style.top = (e.clientY - diffY) + 'px';
+        }
+        if (isLeftTop || isLeftBottom) {
+          box.style.left = (e.clientX - diffX) + 'px';
+        }
+      }
+    }
+    function handleMouseUp() {
+      document.onmousemove = null
+    }
+    rightTop.addEventListener('mousedown', handleResizeBoxMousedown, false);
+    leftTop.addEventListener('mousedown', handleResizeBoxMousedown, false);
+    leftBottom.addEventListener('mousedown', handleResizeBoxMousedown, false);
+    rightBottom.addEventListener('mousedown', handleResizeBoxMousedown, false);
+    rightTop.addEventListener('mouseup', handleMouseUp, false);
+    leftTop.addEventListener('mouseup', handleMouseUp, false);
+    rightBottom.addEventListener('mouseup', handleMouseUp, false);
+    leftBottom.addEventListener('mouseup', handleMouseUp, false);
+  </script>
+</body>
+</html>
