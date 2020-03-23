@@ -1,12 +1,10 @@
-const {
-  description
-} = require('../../package')
+const { description } = require("../../package");
 
 module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: '前端学习笔记',
+  title: "前端学习笔记",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -18,44 +16,47 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
+    repo: "",
     editLinks: false,
-    docsDir: '',
-    editLinkText: '',
+    docsDir: "",
+    editLinkText: "",
     lastUpdated: false,
-    nav: [{
-        text: '预读班',
-        link: '/preReading/',
+    nav: [
+      {
+        text: "preRead",
+        link: "/preReading/"
       },
       {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
+        text: "questionBank",
+        link: "/questionbank/"
+      },
+      {
+        text: "VuePress",
+        link: "https://v1.vuepress.vuejs.org"
       }
     ],
     sidebar: {
       // 预读班部分
-      '/preReading/': [{
-        title: '初探学堂😄',
-        collapsable: false,
-        children: [
-          ''
-        ]
-      }, {
-        title: 'css 🏮',
-        collapsable: false,
-        children: [
-          'css/',
-          'css/bfc'
-        ]
-      }]
+      "/preReading/": [
+        {
+          title: "初探学堂😄",
+          collapsable: false,
+          children: [""]
+        },
+        {
+          title: "css 🏮",
+          collapsable: false,
+          children: ["css/", "css/bfc"]
+        }
+      ],
+      '/questionbank/': [
+        ''
+      ]
     }
   },
 
   /**
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
-  plugins: [
-    '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom',
-  ]
-}
+  plugins: ["@vuepress/plugin-back-to-top", "@vuepress/plugin-medium-zoom"]
+};
