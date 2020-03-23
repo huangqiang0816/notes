@@ -1,10 +1,12 @@
-const { description } = require("../../package");
+const {
+  description
+} = require("../../package");
 
 module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "前端学习笔记",
+  title: "前端资料",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -21,8 +23,7 @@ module.exports = {
     docsDir: "",
     editLinkText: "",
     lastUpdated: false,
-    nav: [
-      {
+    nav: [{
         text: "preRead",
         link: "/preReading/"
       },
@@ -37,8 +38,7 @@ module.exports = {
     ],
     sidebar: {
       // 预读班部分
-      "/preReading/": [
-        {
+      "/preReading/": [{
           title: "初探学堂😄",
           collapsable: false,
           children: [""]
@@ -50,7 +50,12 @@ module.exports = {
         }
       ],
       '/questionbank/': [
-        ''
+        '', 
+        {
+          title: '面试题',
+          collapsable: false,
+          children: ['base']
+        }
       ]
     }
   },
