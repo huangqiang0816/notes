@@ -47,6 +47,11 @@ module.exports = {
           title: "css 🏮",
           collapsable: false,
           children: ["css/", "css/bfc"]
+        },
+        {
+          title: "js 🏮",
+          collapsable: false,
+          children: ["js/funtionstyle"]
         }
       ],
       '/questionbank/': [
