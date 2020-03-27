@@ -4,10 +4,10 @@ let isFunction = source => Object.prototype.toString.call(source) === "[object F
 function promise(fn) {
   // 
   let promise = this,
-    value = null,
-    promise._resolves = [],
-    promise._rejects = [],
-    promise._status = 'PENDING'
+    value = null;
+  promise._resolves = [],
+  promise._rejects = [],
+  promise._status = 'PENDING'
 
   this.then = function (onFulilled) {
     return new promise(function (resolve) {
