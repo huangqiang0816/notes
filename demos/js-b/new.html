@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实现一个new</title>
+  </head>
+  <body>
+    <script>
+      function Car(color) {
+        this.color = color;
+      }
+      // let car1 = new Car();
+      // let car2 = new Car();
+      // console.log(car1.color);
+      // console.log(car1.color);
+      // console.log(car1);
+      //  首先需要知道new操作符是做什么的？
+      // new 关键字会进行以下操作：
+      // 1.创建一个空的简单JavaScript对象（即{}）
+      // 2.链接该对象（即设置该对象的构造函数）到另一个对象
+      // 3.将步骤1新创建的对象作为this的上下文
+      // 4. 如果该函数没有返回对象、则返回this
+
+      let newFunction = function() {
+        // 创建个空的简单的JavaScript对象
+        let construct = Array.prototype.shift.call(arguments)
+        let res = Object.create(construct.prototype);
+        console.log(res)
+        // 2.链接该对象（即设置该对象的构造函数）到另一个对象
+        // res.__proto__ = construct.prototype
+        // 3.将步骤1新创建的对象作为this的上下文
+        construct.apply(res, arguments)
+        return res
+      };
+      let car1 = new Car('red');
+      let car2 = new Car('pink');
+      let car3 = newFunction(Car, 'red')
+      let car4 = newFunction(Car, 'pink')
+      Car.prototype.color = "origin color";
+
+      console.log(car1.__proto__.constructor === car3.__proto__.constructor)
+      console.log(car3.__proto__.constructor === Car)
+      // console.log(car2)
+      // console.log(car3)
+      // console.log(car4)
+    </script>
+  </body>
+</html>
