@@ -5,7 +5,6 @@ function SuperType() {
 SuperType.prototype.getSuperValue = function () {
   return this.property
 }
-
 function SubType() {
   this.subpropety = false
 }
