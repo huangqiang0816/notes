@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="800"></canvas>
+    <script>
+      // 算法：输入一条 polyline,输出polyline的中点
+
+      // 绘制：在浏览器中绘制出polyline和中点
+
+      // 说明：中点是指沿着polyline，到polyline的起点和终点，距离相等，中点要求在polyline上
+
+      // 输入[[10,20],[20, 200],[30, 200],[40,300],[100,400]]。以[10,20]举例，10代表x坐标，单位是像素
+
+      // 提供源代码
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext("2d");
+      // 折线
+      ctx.beginPath();
+      ctx.moveTo(10, 20);
+      ctx.lineTo(20, 100);
+      ctx.lineTo(30, 200);
+      ctx.lineTo(40, 300);
+      ctx.lineTo(100, 400);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#F90";
+      ctx.stroke();
+      // // 起-》终点
+      ctx.beginPath();
+      ctx.moveTo(10, 20);
+      ctx.lineTo(100, 400);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "red";
+      ctx.stroke();
+      ctx.closePath();
+      ctx.save();
+      ctx.translate(55,210);
+      ctx.rotate(Math.PI * 2.5);
+      // ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(90, 380);
+      ctx.stroke();
+      ctx.strokeStyle = "yellow";
+      ctx.closePath();
+      ctx.restore();
+    </script>
+  </body>
+</html>
