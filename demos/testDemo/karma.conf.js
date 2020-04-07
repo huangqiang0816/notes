@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Tue Apr 07 2020 16:30:53 GMT+0800 (GMT+08:00)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,25 +15,69 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      "./src/**/*.js",
+      "./tests/**/*.spec.js"
     ],
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      "./src/**/*.js": ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+    coveragereporter: {
 
+      dir: 'build/reports/coverage',
+      reporters: [
+        // reporters not supporting the `file` property
+        {
+          type: 'html',
+          subdir: 'report-html'
+        },
+        {
+          type: 'lcov',
+          subdir: 'report-lcov'
+        },
+        // reporters supporting the `file` property, use `subdir` to directly
+        // output them in the `dir` directory
+        {
+          type: 'cobertura',
+          subdir: '.',
+          file: 'cobertura.txt'
+        },
+        {
+          type: 'lcovonly',
+          subdir: '.',
+          file: 'report-lcovonly.txt'
+        },
+        {
+          type: 'teamcity',
+          subdir: '.',
+          file: 'teamcity.txt'
+        },
+        {
+          type: 'text',
+          subdir: '.',
+          file: 'text.txt'
+        },
+        {
+          type: 'text-summary',
+          subdir: '.',
+          file: 'text-summary.txt'
+        },
+      ]
+
+    },
 
     // web server port
     port: 9876,
@@ -59,7 +103,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
