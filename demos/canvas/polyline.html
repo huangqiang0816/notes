@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="text-align: center;">
+  <canvas id="canvas" style="border:1px solid #000"></canvas>
+</body>
+
+</html>
+<script>
+  class Canvas {
+    constructor(canvas, options = {}) {
+      const defaultOptions = {
+        canvasWidth: 400,
+        canvasHeight: 600,
+        lineWidth: 1,
+        lineColor: '#F90',
+        points: []
+      }
+      this.defaultOptions = Object.assign(defaultOptions, options)
+      const {
+        canvasHeight,
+        canvasWidth,
+        lineColor,
+        lineWidth
+      } = this.defaultOptions
+      this.canvas = canvas;
+      this.canvas.width = canvasWidth;
+      this.canvas.height = canvasHeight;
+      this.ctx = this.canvas.getContext('2d');
+      this.ctx.stokeStyle = lineColor;
+      this.ctx.lineWidth = lineWidth;
+      //  切换绘制起点到中心
+      this.ctx.translate(canvasWidth / 2, canvasHeight / 2);
+      // this.ctx.scale(1, -1);
+    }
+
+    drawLines() {
+      this.ctx.beginPath();
+
+      const {
+        points
+      } = this.defaultOptions
+      points.forEach(point => {
+        this.ctx.lineTo(point[0], point[1])
+      })
+
+      this.ctx.stroke();
+      this.ctx.closePath();
+    }
+
+    drawDot(point, color, size) {
+      this.ctx.beginPath();
+
+      this.ctx.fillStyle = color;
+      this.ctx.arc(point[0], point[1], size, 0, 2 * Math.PI);
+
+      this.ctx.fill();
+      this.ctx.closePath();
+    }
+
+    findMiddlePoint() {
+      const {
+        points
+      } = this.defaultOptions
+      if (points.length <= 1) return points
+
+      let lineSum = 0;
+      const eachPointsInfo = [];
+
+      for (let i = 0; i < points.length - 1; i++) {
+        const offsetX = points[i + 1][0] - points[i][0];
+        const offsetY = points[i + 1][1] - points[i][1];
+        
+      }
+    }
+
+  }
+
+  const canvas = new Canvas(document.getElementById('canvas'), {
+    points: [
+      [10, 0],
+      [-30, 150],
+      [-100, -100],
+      [50, 10],
+      [100, 100]
+    ]
+  })
+  canvas.drawLines()
+  canvas.drawDot([0, 0], '#ff9900', 2)
+</script>
