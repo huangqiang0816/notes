@@ -3,8 +3,8 @@ const app = express()
 
 const port = 3000
 
-app.get('/', (req, res) => {
-  console.log('req', req);
+app.get('/index/:id', (req, res) => {
+  console.log(req.params)
   
   res.send('Hello World111!')
 })
