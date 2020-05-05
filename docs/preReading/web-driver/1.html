@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分离独写</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid green;
+        }
+
+        .aa {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    let box = document.getElementById('box')
+    // 会执行两次
+    box.style.width = '200px'
+    box.style.height = '200px'
+    console.log(box.clientHeight)
+    box.style.margin = "10px"
+    // 分离独写   把获取样式 和改变样式分开写
+    // 实际只回流一次  当代浏览器的渲染队列机制处理
+
+    /* 分离独写   把获取样式 和改变样式分开写 */
+    /*
+        box.style.width = '200px'
+        box.style.height = '200px'
+        box.style.margin = "10px"
+        // 分离独写   把获取样式 和改变样式分开写
+        console.log(box.clientHeight)
+     */
+    /* 批量处理*/
+    box.style.cssText = "width:200px;height:200px"
+    box.className = 'aa'
+    /* 缓存处理*/
+    // 这样会触发两次重绘
+    // box.style.width = box.clientWidth + 10 + 'px'
+    // box.style.height = box.clientHeight + 10 + 'px'
+    /*let a = box.clientWidth
+    let b = box.clientHeight
+    box.style.width = a + 10 + 'px'
+    box.style.height = b + 10 + 'px'*/
+    /*元素批量处理*/
+</script>
+</body>
+</html>

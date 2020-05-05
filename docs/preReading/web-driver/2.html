@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="box"></ul>
+<script>
+    let box = document.getElementById('box')
+    // 这样会触发五次回流 五次渲染
+    console.time('render')
+    for (let i = 0; i < 5000; i++) {
+        let newLi = document.createElement('li')
+        newLi.innerHTML = '我是第' + i + '个'
+        box.append(newLi)
+    }
+    console.timeEnd('render')
+    // 1. 利用文档碎片添加进dom 树中 触发一次回流
+    // let frg = document.createDocumentFragment()
+    // for (let i = 0; i < 5000; i++) {
+    //     let newLi = document.createElement('li')
+    //     newLi.innerHTML = '我是第' + i + '个'
+    //     frg.append(newLi)
+    // }
+    // box.appendChild(frg)
+    // frg = null
+    // 2. 字符串拼接
+</script>
+</body>
+</html>
