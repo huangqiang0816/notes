@@ -1,7 +1,7 @@
 // 4-27
 
 // 成立？
-fn(n) = fn(n - 1) + fn(n - 2)
+// fn(n) = fn(n - 1) + fn(n - 2)
 
 function fibnacci2(n) {
     if (n == 0) {
@@ -28,6 +28,7 @@ function fibnacci3(n) {
     }
     return fibnacci3(n - 1) + fibnacci3(n - 2)
 }
+
 // 递归加记忆法
 function fibnacci4(n, memory = []) {
     if (n < 2) {
@@ -44,10 +45,11 @@ function fibnacci5(n) {
     if (n < 1) {
         return n
     }
-    let i = 1;let pre = 0;
+    let i = 1;
+    let pre = 0;
     let current = 1;
     let result = 0;
-    while(i++ < n){
+    while (i++ < n) {
         result = pre + current;
         pre = current
         current = result
