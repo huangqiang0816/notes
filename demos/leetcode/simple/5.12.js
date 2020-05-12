@@ -41,4 +41,20 @@ let shunZi = function (arr) {
 
 }
 
-shunZi([1, 2, 0, 4, 0])
+let isStraight = function (nums) {
+    const minSort = nums.sort((a, b) => a - b)
+
+    let sum = 0;
+
+    for (let i = 0; i < 4; i++) {
+        if (minSort[i] === 0) {
+            continue
+        } else if (minSort[i + 1] === minSort[i]) {
+            return false
+        } else {
+            sum += (minSort[i + 1] - minSort[i])
+        }
+    }
+    return sum < 5
+}
+isStraight([1, 2, 3, 4, 6])
