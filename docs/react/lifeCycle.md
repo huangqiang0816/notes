@@ -2,4 +2,10 @@
 
 - 挂载阶段
 
-> constructor
+  constructor
+
+  componentWillMount
+
+  render
+
+  
