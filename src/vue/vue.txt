@@ -1,0 +1,15 @@
+1. 目录结构
+
+    compiler  => 编译 -> codegen 
+                      -> directives
+                      -> parser
+    core => 核心原理 -> components （keepAlive组件）
+                    -> global-api 全局的api 
+                    -> instance
+                    -> observer
+                    -> util 
+                    -> vDom 虚拟DOM
+    platforms => 平台编译
+    server => 服务的渲染
+    sfc
+    shared => 公共的方法
