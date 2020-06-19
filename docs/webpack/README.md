@@ -6,9 +6,9 @@
 
    webpack-deep-scope-plugin
 
-   cssnano
+   cssnano（压缩css ,删除注释等。。）
 
-   purifycss-webpack
+   purifycss-webpack -> purgecss-webpack-plugin 已经换了
 
 2. 开启多核压缩 happypack 多线程编译 webpack 不支持的情况下使用 thread-loader,
 
