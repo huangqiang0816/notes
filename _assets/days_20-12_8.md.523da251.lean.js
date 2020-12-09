@@ -1,0 +1,1 @@
+import{o as n,e as s,G as a}from"./framework.c00dda38.js";const t='{"title":"每日笔记","description":"","frontmatter":{},"relativePath":"days/20-12/8.md","lastUpdated":1607416343860.9185}';var p={};const o=a('',3);p.render=function(a,t,p,c,e,u){return n(),s("div",null,[o])};export default p;export{t as __pageData};
